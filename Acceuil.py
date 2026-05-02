@@ -11,6 +11,9 @@ st.set_page_config(
 st.markdown("""
 <style>
 /* Global styling */
+[data-testid="stHeaderActionElements"] {
+    display: none;
+}
 [data-testid="stAppViewContainer"] {
     background-color: #f7fcf4;
 }

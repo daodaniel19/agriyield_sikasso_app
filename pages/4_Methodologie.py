@@ -4,6 +4,7 @@ from utils.texts import get_explanation_text, get_model_limitations
 
 st.set_page_config(page_title="Méthodologie", layout="wide")
 
+st.markdown('<style>[data-testid="stHeaderActionElements"] {display: none;}</style>', unsafe_allow_html=True)
 st.markdown('<h1 style="color: #1a4a38;">Méthodologie et Limites</h1>', unsafe_allow_html=True)
 st.markdown('<p style="color: #538d6b; font-size: 1.1rem; margin-bottom: 2rem;">Comprendre comment l\'IA raisonne et quelles sont ses contraintes.</p>', unsafe_allow_html=True)
 
@@ -19,8 +20,8 @@ with col2:
         st.markdown("### Importance des Variables")
         st.markdown("Ce graphique illustre le poids de chaque caractéristique dans la décision finale de l'algorithme :")
         importance_data = pd.DataFrame({
-            "Variable": ["Culture : maïs", "Culture : riz", "Intéra. Sup × Sem", "Âge Exploitant", "Log(Semence/ha)", "Semence/ha", "Superficie", "Semence Locale"],
-            "Importance (%)": [39.4, 12.8, 8.6, 8.6, 7.0, 6.8, 4.0, 1.2]
+            "Variable": ["Maïs", "Riz", "Intéra. Sem Sup", "Âge Exploitant", "Semence/ha", "Superficie", "Semence Locale"],
+            "Importance (%)": [39.4, 12.8, 8.6, 8.6, 6.8, 4.0, 1.2]
         }).sort_values("Importance (%)", ascending=True)
         
         st.bar_chart(importance_data.set_index("Variable"), color="#538d6b")

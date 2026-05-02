@@ -9,6 +9,7 @@ st.set_page_config(page_title="Simulateur Interactif", layout="wide")
 # Custom CSS for layout
 st.markdown("""
 <style>
+[data-testid="stHeaderActionElements"] {display: none;}
 .metric-box {
     background-color: #f0f7f4;
     border-left: 5px solid #28a745;
@@ -35,7 +36,7 @@ st.markdown('<p style="color: #538d6b; font-size: 1.1rem; margin-bottom: 1rem;">
 model = load_model()
 reference_stats = load_reference_stats()
 
-simulate_btn = st.sidebar.button("Lancer la Simulation", type="primary", use_container_width=True)
+simulate_btn = st.sidebar.button("Lancer la Simulation", type="primary", width="stretch")
 
 col_form, col_res = st.columns([1, 1.2])
 

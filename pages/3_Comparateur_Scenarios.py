@@ -6,6 +6,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Comparateur Scénarios", layout="wide")
 
+st.markdown('<style>[data-testid="stHeaderActionElements"] {display: none;}</style>', unsafe_allow_html=True)
 st.markdown('<h1 style="color: #1a4a38;">Comparateur de Scénarios</h1>', unsafe_allow_html=True)
 st.markdown('<p style="color: #538d6b; font-size: 1.1rem; margin-bottom: 2rem;">Évaluez l’impact d’un changement de pratiques (semences, superficies...) sur le rendement final.</p>', unsafe_allow_html=True)
 
@@ -33,7 +34,7 @@ base_inputs = {
     "manager_age": 35, "manager_sex": "Masculin", "seed_type_name": "locales"
 }
 
-if st.button("Comparer les Résultats", use_container_width=True, type="primary"):
+if st.button("Comparer les Résultats", width="stretch", type="primary"):
     in_a = base_inputs.copy(); in_a.update({"culture_name": cult_a, "seed_used_per_ha": sem_a, "ha_culture": sup_a})
     in_b = base_inputs.copy(); in_b.update({"culture_name": cult_b, "seed_used_per_ha": sem_b, "ha_culture": sup_b})
 

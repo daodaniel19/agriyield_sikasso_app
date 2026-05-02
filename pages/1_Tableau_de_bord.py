@@ -5,6 +5,7 @@ from utils.texts import get_institutional_text
 
 st.set_page_config(page_title="Tableau de Bord", layout="wide")
 
+st.markdown('<style>[data-testid="stHeaderActionElements"] {display: none;}</style>', unsafe_allow_html=True)
 st.markdown('<h1 style="color: #1a4a38;">Tableau de Bord Global</h1>', unsafe_allow_html=True)
 st.markdown('<p style="color: #538d6b; font-size: 1.1rem; margin-bottom: 2rem;">Vue synthétique historique et métriques de performance du modèle</p>', unsafe_allow_html=True)
 
@@ -49,7 +50,7 @@ with col_perf:
     ])
     st.dataframe(
         perf_df.style.background_gradient(cmap="Greens", subset=["R²"]),
-        use_container_width=True,
+        width="stretch",
         hide_index=True
     )
     st.info("Le modèle Random Forest a été retenu pour sa stabilité et sa meilleure capacité de généralisation sur les données EAC.")
