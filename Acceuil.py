@@ -76,8 +76,6 @@ with st.sidebar:
     st.markdown("## AgriYield Sikasso")
     st.markdown("*Outil d’aide à la décision agricole*")
     st.markdown("---")
-    st.markdown("**Version Premium** 🚀")
-    st.info("Sélectionnez une page ci-dessus pour commencer.")
 
 st.markdown('<div class="main-title">🌾 AgriYield Sikasso</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Intelligence artificielle au service de la prédiction de rendement agricole</div>', unsafe_allow_html=True)
@@ -108,10 +106,10 @@ with col2:
         <div class="stCard">
             <div class="card-title">Fonctionnalités</div>
             <ul style="color: #4a5568; line-height: 1.8;">
-                <li>📊 <strong>Tableau de Bord :</strong> Vue synthétique des rendements.</li>
-                <li>🌱 <strong>Simulateur :</strong> Prédiction personnalisée sur parcelle.</li>
-                <li>⚖️ <strong>Comparateur :</strong> Analyse d'impact des pratiques.</li>
-                <li>📖 <strong>Méthodologie :</strong> Explication du modèle IA.</li>
+                <li><strong>Tableau de Bord :</strong> Vue synthétique des rendements.</li>
+                <li><strong>Simulateur :</strong> Prédiction personnalisée sur parcelle.</li>
+                <li><strong>Comparateur :</strong> Analyse d'impact des pratiques.</li>
+                <li><strong>Méthodologie :</strong> Explication du modèle IA.</li>
             </ul>
         </div>
         """,

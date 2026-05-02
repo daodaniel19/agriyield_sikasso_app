@@ -4,9 +4,9 @@ from utils.preprocessing import build_model_input
 from utils.prediction import predict_yield
 import pandas as pd
 
-st.set_page_config(page_title="Comparateur Scénarios", page_icon="⚖️", layout="wide")
+st.set_page_config(page_title="Comparateur Scénarios", layout="wide")
 
-st.markdown('<h1 style="color: #1a4a38;">⚖️ Comparateur de Scénarios</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="color: #1a4a38;">Comparateur de Scénarios</h1>', unsafe_allow_html=True)
 st.markdown('<p style="color: #538d6b; font-size: 1.1rem; margin-bottom: 2rem;">Évaluez l’impact d’un changement de pratiques (semences, superficies...) sur le rendement final.</p>', unsafe_allow_html=True)
 
 model = load_model()
@@ -14,14 +14,14 @@ model = load_model()
 col_a, col_b = st.columns(2)
 
 with col_a:
-    st.markdown("### 🌿 Scénario A (Référence)")
+    st.markdown("### Scénario A (Référence)")
     with st.container(border=True):
         cult_a = st.selectbox("Culture A", ["mais", "mil", "sorgho", "riz", "niebe", "arachide"])
         sem_a = st.number_input("Semences A (kg/ha)", 0.0, value=20.0, step=0.5)
         sup_a = st.number_input("Superficie A (ha)", 0.01, value=1.0, step=0.1)
 
 with col_b:
-    st.markdown("### 🔬 Scénario B (Alternative)")
+    st.markdown("### Scénario B (Alternative)")
     with st.container(border=True):
         cult_b = st.selectbox("Culture B", ["mais", "mil", "sorgho", "riz", "niebe", "arachide"], index=0)
         sem_b = st.number_input("Semences B (kg/ha)", 0.0, value=25.0, step=0.5)
@@ -33,7 +33,7 @@ base_inputs = {
     "manager_age": 35, "manager_sex": "Masculin", "seed_type_name": "locales"
 }
 
-if st.button("🚀 Comparer les Résultats", use_container_width=True, type="primary"):
+if st.button("Comparer les Résultats", use_container_width=True, type="primary"):
     in_a = base_inputs.copy(); in_a.update({"culture_name": cult_a, "seed_used_per_ha": sem_a, "ha_culture": sup_a})
     in_b = base_inputs.copy(); in_b.update({"culture_name": cult_b, "seed_used_per_ha": sem_b, "ha_culture": sup_b})
 
@@ -44,7 +44,7 @@ if st.button("🚀 Comparer les Résultats", use_container_width=True, type="pri
     pct_diff = (diff / pred_a) * 100 if pred_a > 0 else 0
 
     st.markdown("---")
-    st.markdown("### 📊 Résultats de la Comparaison")
+    st.markdown("### Résultats de la Comparaison")
     
     c1, c2, c3 = st.columns(3)
     c1.metric("Rendement Scénario A", f"{pred_a:.3f} t/ha")
@@ -58,6 +58,6 @@ if st.button("🚀 Comparer les Résultats", use_container_width=True, type="pri
     st.bar_chart(df_chart.set_index("Scénario"), color=["#8ba89a"])
     
     if diff > 0:
-        st.success("✨ L'alternative B semble être un choix plus performant sur le plan agronomique selon le modèle.")
+        st.success("L'alternative B semble être un choix plus performant sur le plan agronomique selon le modèle.")
     else:
-        st.warning("⚠️ L'alternative B ne montre pas de gain significatif ou est moins performante.")
+        st.warning("L'alternative B ne montre pas de gain significatif ou est moins performante.")

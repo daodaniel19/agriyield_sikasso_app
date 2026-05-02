@@ -4,7 +4,7 @@ from utils.load_assets import load_model, load_reference_stats
 from utils.preprocessing import build_model_input
 from utils.prediction import compare_to_reference, predict_yield
 
-st.set_page_config(page_title="Simulateur Interactif", page_icon="🌱", layout="wide")
+st.set_page_config(page_title="Simulateur Interactif", layout="wide")
 
 # Custom CSS for layout
 st.markdown("""
@@ -29,20 +29,19 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<h1 style="color: #1a4a38;">🌱 Simulateur de Rendement</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="color: #1a4a38;">Simulateur de Rendement</h1>', unsafe_allow_html=True)
 st.markdown('<p style="color: #538d6b; font-size: 1.1rem; margin-bottom: 1rem;">Estimez instantanément le rendement de votre parcelle en ajustant ses paramètres.</p>', unsafe_allow_html=True)
 
 model = load_model()
 reference_stats = load_reference_stats()
 
-st.sidebar.markdown("### 🎯 Actions")
-simulate_btn = st.sidebar.button("🚀 Lancer la Simulation", type="primary", use_container_width=True)
+simulate_btn = st.sidebar.button("Lancer la Simulation", type="primary", use_container_width=True)
 
 col_form, col_res = st.columns([1, 1.2])
 
 with col_form:
     with st.container(border=True):
-        st.markdown("### 📝 Saisie des Paramètres")
+        st.markdown("### Saisie des Paramètres")
         culture_name = st.selectbox("Culture", ["mais", "mil", "sorgho", "riz", "niebe", "arachide"])
         
         c1, c2 = st.columns(2)
@@ -75,7 +74,7 @@ with col_res:
         prediction = predict_yield(model, input_df)
         result = compare_to_reference(prediction, culture_name, reference_stats)
         
-        st.markdown("### 📊 Résultats de la Prédiction")
+        st.markdown("### Résultats de la Prédiction")
         
         # Dashboard metrics
         st.markdown(f"""
@@ -91,11 +90,11 @@ with col_res:
         rc2.metric("Écart par rapport à la moyenne", f"{diff:+.3f} t/ha", delta_color="normal")
         
         if result["level"] == "supérieur":
-            st.success(f"📈 **Excellent profil !** {result['message']}")
+            st.success(f"**Excellent profil !** {result['message']}")
         elif result["level"] == "inférieur":
-            st.warning(f"📉 **Attention !** {result['message']}")
+            st.warning(f"**Attention !** {result['message']}")
         else:
-            st.info(f"➖ {result['message']}")
+            st.info(f"{result['message']}")
             
         with st.expander("Voir les facteurs d'influence de cette prédiction"):
             st.write("Le modèle prend en compte prioritairement :")
@@ -104,4 +103,4 @@ with col_res:
             st.progress(50, text=f"Superficie ({ha_culture} ha)")
             st.caption("L'âge et le type de semence ont un impact secondaire dans cette configuration.")
     else:
-        st.info("👈 Ajustez vos paramètres et cliquez sur **Lancer la Simulation** pour voir les résultats ici.")
+        st.info("Ajustez vos paramètres et cliquez sur **Lancer la Simulation** pour voir les résultats ici.")
